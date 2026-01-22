@@ -14,42 +14,106 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Приватный сервер Minecraft — DEGROCRAFT | Ванильное выживание",
+  metadataBase: new URL("https://degrocraft.vercel.app"),
+  title: {
+    default: "DEGROCRAFT — Приватный Minecraft сервер | Ванильное выживание",
+    template: "%s | DEGROCRAFT",
+  },
   description:
-    "Уютный приватный Minecraft сервер для друзей. Ламповое сообщество, ванильный геймплей, совместные стройки. Вход только по приглашению через Telegram.",
+    "Уютный приватный Minecraft сервер для друзей. Ламповое сообщество, ванильный геймплей 1.21.11, совместные стройки. Вход только по приглашению через Telegram.",
   keywords: [
-    "minecraft",
-    "сервер",
+    "minecraft сервер",
+    "приватный сервер minecraft",
     "degrocraft",
-    "приватный",
-    "ванильный",
-    "для друзей",
+    "ванильный minecraft",
+    "minecraft для друзей",
+    "minecraft 1.21",
+    "майнкрафт сервер",
+    "приватный майнкрафт",
+    "survival minecraft",
+    "minecraft россия",
   ],
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
-  authors: [{ name: "DEGROCRAFT" }],
+  authors: [{ name: "DEGROCRAFT Team" }],
+  creator: "DEGROCRAFT",
+  publisher: "DEGROCRAFT",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: "https://degrocraft.vercel.app",
+  },
   openGraph: {
     title: "DEGROCRAFT — Приватный Minecraft сервер",
-    description: "Уютный приватный сервер для друзей. Собираемся у костра!",
+    description:
+      "Уютный приватный сервер для друзей. Ламповое сообщество, ванильный геймплей, совместные стройки.",
     type: "website",
     siteName: "DEGROCRAFT",
     locale: "ru_RU",
+    url: "https://degrocraft.vercel.app",
     images: [
       {
-        url: "/og-image.png", // Создайте красивую картинку с надписью "Приватный сервер"
+        url: "/og-image.png",
         width: 2048,
         height: 512,
-        alt: "DEGROCRAFT Minecraft Server",
+        alt: "DEGROCRAFT — Приватный Minecraft сервер для друзей",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "DEGROCRAFT — Приватный Minecraft сервер",
-    description: "Уютный приватный сервер для друзей",
+    description: "Уютный приватный сервер для друзей. Ванильный геймплей 1.21",
+    images: ["/og-image.png"],
   },
+  verification: {
+    // Добавь свои ключи верификации после регистрации в консолях
+    // google: "ваш-google-site-verification-код",
+    // yandex: "ваш-yandex-verification-код",
+  },
+  category: "games",
+};
+
+// JSON-LD структурированные данные
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "DEGROCRAFT",
+  description: "Приватный Minecraft сервер для друзей",
+  url: "https://degrocraft.vercel.app",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: "https://degrocraft.vercel.app/?q={search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
+};
+
+const gameServerJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "GameServer",
+  name: "DEGROCRAFT Minecraft Server",
+  description:
+    "Уютный приватный Minecraft сервер для друзей. Ванильный геймплей, версия 1.21.11",
+  url: "https://degrocraft.vercel.app",
+  game: {
+    "@type": "VideoGame",
+    name: "Minecraft",
+    gamePlatform: ["PC", "Java Edition"],
+  },
+  serverStatus: "Online",
+  playersOnline: "Приватный",
 };
 
 export default function RootLayout({
@@ -59,6 +123,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(gameServerJsonLd) }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

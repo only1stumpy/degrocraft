@@ -1,10 +1,30 @@
 "use client";
 
-import { useGLTF, Stage, OrbitControls } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 
-export function Model() {
-  // Загружаем модель (файл в public/models/robot.glb)
-  const { scene } = useGLTF("/minecraft_-_sheep.glb");
+// ===========================================
+// НАСТРОЙКА МОДЕЛИ
+// ===========================================
+// Чтобы изменить 3D модель:
+// 1. Скачай .glb файл (например, с https://sketchfab.com)
+// 2. Положи файл в папку /public
+// 3. Измени MODEL_PATH на имя твоего файла
+// ===========================================
 
-  return <primitive object={scene} scale={1.5} />;
+const MODEL_PATH = "/minecraft_-_sheep.glb";
+const MODEL_SCALE = 1.5;
+
+// ===========================================
+
+interface ModelProps {
+  path?: string;
+  scale?: number;
 }
+
+export function Model({ path = MODEL_PATH, scale = MODEL_SCALE }: ModelProps) {
+  const { scene } = useGLTF(path);
+  return <primitive object={scene} scale={scale} />;
+}
+
+// Preload модели для быстрой загрузки
+useGLTF.preload(MODEL_PATH);

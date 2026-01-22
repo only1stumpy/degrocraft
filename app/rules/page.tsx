@@ -1,0 +1,305 @@
+"use client";
+
+import Link from "next/link";
+import { useState, useEffect } from "react";
+
+const rules = [
+  {
+    id: 1,
+    title: "Уважение к игрокам",
+    description:
+      "Относись к другим так, как хочешь, чтобы относились к тебе. Без оскорблений, токсичности и неуважения.",
+    icon: (
+      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+      </svg>
+    ),
+  },
+  {
+    id: 2,
+    title: "Никакого гриферства",
+    description:
+      "Не разрушай и не порти чужие постройки. Чужое имущество — неприкосновенно.",
+    icon: (
+      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8 0-1.85.63-3.55 1.69-4.9L16.9 18.31C15.55 19.37 13.85 20 12 20zm6.31-3.1L7.1 5.69C8.45 4.63 10.15 4 12 4c4.42 0 8 3.58 8 8 0 1.85-.63 3.55-1.69 4.9z" />
+      </svg>
+    ),
+  },
+  {
+    id: 3,
+    title: "Не воруй",
+    description:
+      "Брать чужие вещи без разрешения — запрещено. Это касается сундуков, ферм и любых ресурсов.",
+    icon: (
+      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" />
+      </svg>
+    ),
+  },
+  {
+    id: 4,
+    title: "Ванильный геймплей",
+    description:
+      "Никаких читов, X-Ray, килл-аур и прочего. Играем честно и на равных условиях.",
+    icon: (
+      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+      </svg>
+    ),
+  },
+  {
+    id: 5,
+    title: "Адекватный никнейм",
+    description:
+      "Используй нормальный ник без оскорблений, политики и провокаций.",
+    icon: (
+      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+      </svg>
+    ),
+  },
+  {
+    id: 6,
+    title: "Не спамь",
+    description:
+      "Флуд в чате, капс и многократные сообщения — ни к чему. Общаемся культурно.",
+    icon: (
+      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" />
+      </svg>
+    ),
+  },
+  {
+    id: 7,
+    title: "Помогай новичкам",
+    description:
+      "Если кто-то новенький — помоги разобраться. Мы тут все друзья.",
+    icon: (
+      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+      </svg>
+    ),
+  },
+  {
+    id: 8,
+    title: "Береги природу",
+    description:
+      "Не оставляй летающие деревья и мусор. Убирай за собой после добычи ресурсов.",
+    icon: (
+      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.5 12c1.93 0 3.5-1.57 3.5-3.5S19.43 5 17.5 5 14 6.57 14 8.5s1.57 3.5 3.5 3.5zM8.5 12c1.93 0 3.5-1.57 3.5-3.5S10.43 5 8.5 5 5 6.57 5 8.5 6.57 12 8.5 12zm0 1c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm9 0c-.29 0-.62.02-.97.05.02.01.97.93.97 2.45V19H23v-2.5c0-1.9-3.17-3.1-5.5-3.5z" />
+      </svg>
+    ),
+  },
+];
+
+export default function RulesPage() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-linear-to-b from-[#0c1929] via-[#122338] to-[#0a1520] text-white overflow-hidden relative">
+      {/* Snowflakes */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        {[...Array(30)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute bg-white rounded-full opacity-60 animate-snowfall"
+            style={{
+              width: `${2 + Math.random() * 4}px`,
+              height: `${2 + Math.random() * 4}px`,
+              left: `${Math.random() * 100}%`,
+              top: `-${Math.random() * 20}%`,
+              animationDuration: `${8 + Math.random() * 12}s`,
+              animationDelay: `${Math.random() * 8}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/5 border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <Link href="/" className="flex items-center gap-3">
+              <span className="text-xl font-bold tracking-tight text-white">
+                DEGROCRAFT
+              </span>
+            </Link>
+            <div className="hidden md:flex items-center gap-8">
+              <Link
+                href="/"
+                className="text-white/60 hover:text-white font-medium transition-colors duration-300"
+              >
+                Главная
+              </Link>
+              <Link
+                href="/rules"
+                className="text-white font-medium transition-colors duration-300"
+              >
+                Правила
+              </Link>
+            </div>
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full border border-white/10">
+              <svg
+                className="w-4 h-4 text-white/80"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+              </svg>
+              <span className="text-sm font-medium text-white/80">
+                Приватный
+              </span>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Header */}
+      <section className="pt-32 pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div
+            className={`text-center transition-all duration-1000 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-10"
+            }`}
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-full mb-6">
+              <svg
+                className="w-5 h-5 text-white/80"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+              </svg>
+              <span className="text-sm font-medium text-white/80">
+                Обязательно к прочтению
+              </span>
+            </div>
+            <h1 className="text-5xl sm:text-6xl font-black tracking-tight mb-4">
+              <span className="text-white">Правила</span>{" "}
+              <span className="text-white/60">сервера</span>
+            </h1>
+            <p className="text-xl text-white/50 max-w-2xl mx-auto">
+              Простые правила для комфортной игры. Соблюдай их — и всё будет
+              отлично.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Rules Grid */}
+      <section className="pb-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {rules.map((rule, index) => (
+              <div
+                key={rule.id}
+                className="group p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl transition-all duration-500 hover:bg-white/10 hover:border-white/20 hover:-translate-y-1 animate-fadeInUp opacity-0"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white transition-all duration-300 group-hover:bg-white/20 group-hover:scale-110">
+                    {rule.icon}
+                  </div>
+                  <span className="text-3xl font-black text-white/20">
+                    {String(rule.id).padStart(2, "0")}
+                  </span>
+                </div>
+                <h3 className="text-lg font-bold mb-2 text-white">
+                  {rule.title}
+                </h3>
+                <p className="text-white/50 text-sm leading-relaxed">
+                  {rule.description}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Important Notice */}
+          <div className="mt-12 p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white shrink-0">
+                <svg
+                  className="w-6 h-6"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-white mb-2">
+                  Важно знать
+                </h3>
+                <p className="text-white/50 leading-relaxed">
+                  Нарушение правил может привести к предупреждению или бану.
+                  Администрация оставляет за собой право принимать решения в
+                  спорных ситуациях. Если есть вопросы — пиши в Telegram.
+                  Незнание правил не освобождает от ответственности.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Back Button */}
+          <div className="mt-12 text-center">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-white text-slate-800 hover:bg-white/90 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-white/20"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                />
+              </svg>
+              Вернуться на главную
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-3">
+              <span className="text-xl font-bold text-white">DEGROCRAFT</span>
+            </div>
+            <p className="text-white/40 text-sm text-center">
+              Приватный сервер для друзей. Не аффилирован с Mojang Studios.
+            </p>
+            <div className="flex items-center gap-2 text-white/40 text-sm">
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+              </svg>
+              <span>
+                Сделано с любовью by{" "}
+                <a
+                  href="https://t.me/only1stumpy"
+                  className="hover:text-white transition-colors"
+                >
+                  only1stumpy
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}

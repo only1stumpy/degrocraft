@@ -76,6 +76,12 @@ export default function Home() {
               >
                 Как попасть
               </a>
+              <a
+                href="/rules"
+                className="text-white/60 hover:text-white font-medium transition-colors duration-300"
+              >
+                Правила
+              </a>
             </div>
             <div className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full border border-white/10">
               <svg
