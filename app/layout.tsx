@@ -13,9 +13,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DEGROCRAFT — Приватный Minecraft сервер",
-  description: "Уютный приватный Minecraft сервер для друзей. Ламповое сообщество, ванильный геймплей, совместные стройки. Вход только по приглашению через Telegram.",
-  keywords: ["minecraft", "сервер", "degrocraft", "приватный", "ванильный", "для друзей"],
+  title: "Приватный сервер Minecraft — DEGROCRAFT | Ванильное выживание",
+  description:
+    "Уютный приватный Minecraft сервер для друзей. Ламповое сообщество, ванильный геймплей, совместные стройки. Вход только по приглашению через Telegram.",
+  keywords: [
+    "minecraft",
+    "сервер",
+    "degrocraft",
+    "приватный",
+    "ванильный",
+    "для друзей",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+  },
   authors: [{ name: "DEGROCRAFT" }],
   openGraph: {
     title: "DEGROCRAFT — Приватный Minecraft сервер",
@@ -23,6 +35,14 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "DEGROCRAFT",
     locale: "ru_RU",
+    images: [
+      {
+        url: "/og-image.png", // Создайте красивую картинку с надписью "Приватный сервер"
+        width: 2048,
+        height: 512,
+        alt: "DEGROCRAFT Minecraft Server",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
