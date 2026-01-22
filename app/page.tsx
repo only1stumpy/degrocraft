@@ -119,7 +119,7 @@ export default function Home() {
                 <p className="text-xl text-white/60 max-w-lg leading-relaxed">
                   Уютный приватный сервер для своих.
                   <br />
-                  Тут выебали и убили Лизу Барашик.
+                  Тут любят Лизу Барашик.
                 </p>
               </div>
 
