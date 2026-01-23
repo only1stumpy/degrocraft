@@ -96,6 +96,7 @@ const rules = [
 
 export default function RulesPage() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
@@ -126,10 +127,12 @@ export default function RulesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="flex items-center gap-3">
-              <span className="text-xl font-bold tracking-tight text-white">
+              <span className="text-lg sm:text-xl font-bold tracking-tight text-white">
                 DEGROCRAFT
               </span>
             </Link>
+
+            {/* Desktop menu */}
             <div className="hidden md:flex items-center gap-8">
               <Link
                 href="/"
@@ -144,7 +147,39 @@ export default function RulesPage() {
                 Правила
               </Link>
             </div>
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full border border-white/10">
+
+            {/* Mobile menu button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 text-white/80 hover:text-white transition-colors"
+              aria-label="Toggle menu"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                {isMobileMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+
+            {/* Desktop badge */}
+            <div className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full border border-white/10">
               <svg
                 className="w-4 h-4 text-white/80"
                 viewBox="0 0 24 24"
@@ -157,11 +192,45 @@ export default function RulesPage() {
               </span>
             </div>
           </div>
+
+          {/* Mobile menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden py-4 border-t border-white/10">
+              <div className="flex flex-col gap-4">
+                <Link
+                  href="/"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-white/60 hover:text-white font-medium transition-colors duration-300"
+                >
+                  Главная
+                </Link>
+                <Link
+                  href="/rules"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-white font-medium transition-colors duration-300"
+                >
+                  Правила
+                </Link>
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full border border-white/10 w-fit">
+                  <svg
+                    className="w-4 h-4 text-white/80"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                  </svg>
+                  <span className="text-sm font-medium text-white/80">
+                    Приватный
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
       {/* Header */}
-      <section className="pt-32 pb-16">
+      <section className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
             className={`text-center transition-all duration-1000 ${
@@ -170,23 +239,23 @@ export default function RulesPage() {
                 : "opacity-0 translate-y-10"
             }`}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 border border-white/20 rounded-full mb-4 sm:mb-6">
               <svg
-                className="w-5 h-5 text-white/80"
+                className="w-4 h-4 sm:w-5 sm:h-5 text-white/80"
                 viewBox="0 0 24 24"
                 fill="currentColor"
               >
                 <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
               </svg>
-              <span className="text-sm font-medium text-white/80">
+              <span className="text-xs sm:text-sm font-medium text-white/80">
                 Обязательно к прочтению
               </span>
             </div>
-            <h1 className="text-5xl sm:text-6xl font-black tracking-tight mb-4">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight mb-3 sm:mb-4">
               <span className="text-white">Правила</span>{" "}
               <span className="text-white/60">сервера</span>
             </h1>
-            <p className="text-xl text-white/50 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-white/50 max-w-2xl mx-auto px-4">
               Простые правила для комфортной игры. Соблюдай их — и всё будет
               отлично.
             </p>
@@ -195,7 +264,7 @@ export default function RulesPage() {
       </section>
 
       {/* Rules Grid */}
-      <section className="pb-24">
+      <section className="pb-12 sm:pb-16 md:pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {rules.map((rule, index) => (
@@ -248,14 +317,25 @@ export default function RulesPage() {
             </div>
           </div>
 
-          {/* Back Button */}
-          <div className="mt-12 text-center">
+          {/* CTA Buttons */}
+          <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
+            <a
+              href="https://t.me/+E0uprMS766tlODFi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-white text-slate-800 hover:bg-white/90 rounded-xl font-bold text-base sm:text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-white/20"
+            >
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+              </svg>
+              Написать в Telegram
+            </a>
             <Link
               href="/"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-white text-slate-800 hover:bg-white/90 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-white/20"
+              className="inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-white/10 text-white hover:bg-white/20 border border-white/20 rounded-xl font-bold text-base sm:text-lg transition-all duration-300 hover:scale-105"
             >
               <svg
-                className="w-5 h-5"
+                className="w-4 h-4 sm:w-5 sm:h-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -274,21 +354,21 @@ export default function RulesPage() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-white/10">
+      <footer className="py-8 sm:py-12 border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6">
             <div className="flex items-center gap-3">
-              <span className="text-xl font-bold text-white">DEGROCRAFT</span>
+              <span className="text-lg sm:text-xl font-bold text-white">DEGROCRAFT</span>
             </div>
-            <p className="text-white/40 text-sm text-center">
+            <p className="text-white/40 text-xs sm:text-sm text-center">
               Приватный сервер для друзей. Не аффилирован с Mojang Studios.
             </p>
-            <div className="flex items-center gap-2 text-white/40 text-sm">
+            <div className="flex items-center gap-2 text-white/40 text-xs sm:text-sm">
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
               </svg>
               <span>
-                Сделано с любовью by{" "}
+                by{" "}
                 <a
                   href="https://t.me/only1stumpy"
                   className="hover:text-white transition-colors"
