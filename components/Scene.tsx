@@ -10,9 +10,7 @@ export default function Scene() {
   return (
     <div className="w-full h-full">
       <Canvas shadows camera={{ position: [25, 0, 33], fov: 70 }}>
-        {/* Suspense нужен для отображения чего-то, пока модель грузится */}
         <Suspense fallback={<Loader />}>
-          {/* Stage автоматически настраивает идеальный свет и тени */}
           <Stage
             intensity={0.5}
             environment="city"

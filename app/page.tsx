@@ -85,6 +85,13 @@ export default function Home() {
               >
                 Правила
               </a>
+              <a
+                href="https://wiki.degrocraft.vercel.app"
+                className="text-white/60 hover:text-white font-medium transition-colors duration-300"
+                target="_blank"
+              >
+                Наша вики
+              </a>
             </div>
 
             {/* Mobile menu button */}
@@ -156,6 +163,15 @@ export default function Home() {
                   className="text-white/60 hover:text-white font-medium transition-colors duration-300"
                 >
                   Правила
+                </a>
+
+                <a
+                  href="https://wiki.degrocraft.vercel.app"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-white/60 hover:text-white font-medium transition-colors duration-300"
+                  target="_blank"
+                >
+                  Главная
                 </a>
                 <div className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full border border-white/10 w-fit">
                   <svg
@@ -251,7 +267,9 @@ export default function Home() {
                   >
                     <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
                   </svg>
-                  <span className="text-sm sm:text-base md:text-lg font-bold text-white">Ламповый</span>
+                  <span className="text-sm sm:text-base md:text-lg font-bold text-white">
+                    Ламповый
+                  </span>
                   <span className="text-xs text-white/50">Сервер</span>
                 </div>
                 <div className="flex flex-col items-center p-2 sm:p-3 md:p-4 bg-white/5 rounded-lg sm:rounded-xl border border-white/10">
@@ -262,7 +280,9 @@ export default function Home() {
                   >
                     <path d="M14.79 10.62L3.5 21.9 2.1 20.5l11.28-11.29c-.4-.64-.6-1.38-.6-2.12C12.78 4.51 14.87 2.42 17.45 2.42c.69 0 1.36.15 1.97.42l-3.8 3.8 1.8 1.8 3.8-3.8c.27.61.42 1.28.42 1.97 0 2.58-2.09 4.67-4.67 4.67-.74 0-1.48-.2-2.12-.6z" />
                   </svg>
-                  <span className="text-sm sm:text-base md:text-lg font-bold text-white">1.21.11</span>
+                  <span className="text-sm sm:text-base md:text-lg font-bold text-white">
+                    1.21.11
+                  </span>
                   <span className="text-xs text-white/50">Версия</span>
                 </div>
                 <div className="flex flex-col items-center p-2 sm:p-3 md:p-4 bg-white/5 rounded-lg sm:rounded-xl border border-white/10">
@@ -273,13 +293,16 @@ export default function Home() {
                   >
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
                   </svg>
-                  <span className="text-sm sm:text-base md:text-lg font-bold text-white">24/7</span>
+                  <span className="text-sm sm:text-base md:text-lg font-bold text-white">
+                    24/7
+                  </span>
                   <span className="text-xs text-white/50">Онлайн</span>
                 </div>
               </div>
             </div>
 
             {/* Right content - 3D Campfire */}
+
             <div
               className={`relative transition-all duration-1000 delay-300 ${
                 isVisible
@@ -291,7 +314,7 @@ export default function Home() {
                 {/* Glow effect */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,200,150,0.15)_0%,transparent_60%)] rounded-full blur-2xl" />
                 <div className="relative z-10 w-full h-full">
-                  <Scene />
+                  {/*<Scene />*/}
                 </div>
               </div>
             </div>
@@ -388,7 +411,10 @@ export default function Home() {
       </section>
 
       {/* How to Join Section */}
-      <section id="join" className="py-12 sm:py-16 md:py-24 relative overflow-hidden">
+      <section
+        id="join"
+        className="py-12 sm:py-16 md:py-24 relative overflow-hidden"
+      >
         {/* Background */}
         <div className="absolute inset-0 bg-linear-to-b from-transparent via-white/5 to-transparent" />
 
@@ -403,7 +429,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 mx-auto">
             {[
               {
                 step: "01",
@@ -422,7 +448,7 @@ export default function Home() {
               {
                 step: "02",
                 title: "Напиши в Telegram",
-                description: "Свяжись с нами и расскажи о себе",
+                description: "Вступи в группу в телеграме и расскажи о себе",
                 icon: (
                   <svg
                     className="w-6 h-6"
@@ -435,6 +461,21 @@ export default function Home() {
               },
               {
                 step: "03",
+                title: "Оплати проходку",
+                description:
+                  "Оплати символическую сумму в размере 300руб. за поддержку сервера",
+                icon: (
+                  <svg
+                    className="w-6 h-6"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3H10v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1H6.32c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" />
+                  </svg>
+                ),
+              },
+              {
+                step: "04",
                 title: "Присоединяйся",
                 description: "Заходи и чувствуй себя как дома!",
                 icon: (
@@ -471,7 +512,11 @@ export default function Home() {
               href="/rules"
               className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-white text-slate-800 hover:bg-white/90 rounded-xl font-bold text-base sm:text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-white/20"
             >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="currentColor">
+              <svg
+                className="w-5 h-5 sm:w-6 sm:h-6"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
                 <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
               </svg>
               Прочитать правила
@@ -485,7 +530,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6">
             <div className="flex items-center gap-3">
-              <span className="text-lg sm:text-xl font-bold text-white">DEGROCRAFT</span>
+              <span className="text-lg sm:text-xl font-bold text-white">
+                DEGROCRAFT
+              </span>
             </div>
             <p className="text-white/40 text-xs sm:text-sm text-center">
               Приватный сервер для друзей. Не аффилирован с Mojang Studios.
