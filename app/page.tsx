@@ -314,7 +314,7 @@ export default function Home() {
                 {/* Glow effect */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,200,150,0.15)_0%,transparent_60%)] rounded-full blur-2xl" />
                 <div className="relative z-10 w-full h-full">
-                  {/*<Scene />*/}
+                  <Scene />
                 </div>
               </div>
             </div>
