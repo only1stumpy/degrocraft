@@ -86,7 +86,7 @@ export default function Home() {
                 Правила
               </a>
               <a
-                href="https://wiki.degrocraft.vercel.app"
+                  href="https://degrocraft-wiki.vercel.app"
                 className="text-white/60 hover:text-white font-medium transition-colors duration-300"
                 target="_blank"
               >
@@ -166,7 +166,7 @@ export default function Home() {
                 </a>
 
                 <a
-                  href="https://wiki.degrocraft.vercel.app"
+                  href="https://degrocraft-wiki.vercel.app"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-white/60 hover:text-white font-medium transition-colors duration-300"
                   target="_blank"
