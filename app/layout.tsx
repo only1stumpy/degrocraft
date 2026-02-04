@@ -132,6 +132,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(gameServerJsonLd) }}
         />
+        <meta name="yandex-verification" content="9355eade0b127eec" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
