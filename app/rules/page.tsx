@@ -147,7 +147,7 @@ export default function RulesPage() {
                 Правила
               </Link>
               <Link
-                  href="https://degrocraft-wiki.vercel.app"
+                  href="https://wiki.degrocraft.ru"
                   className="text-white/60 hover:text-white font-medium transition-colors duration-300"
                 target="_blank"
               >
@@ -219,12 +219,12 @@ export default function RulesPage() {
                   Правила
                 </Link>
                 <Link
-                  href="https://degrocraft-wiki.vercel.app"
+                  href="https://wiki.degrocraft.ru"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-white/60 hover:text-white font-medium transition-colors duration-300"
                   target="_blank"
                 >
-                  Главная
+                  Наша вики
                 </Link>
                 <div className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full border border-white/10 w-fit">
                   <svg
@@ -329,7 +329,7 @@ export default function RulesPage() {
                   Незнание правил не освобождает от ответственности.
                 </p>
                 <a
-                  href="https://degrocraft-wiki.vercel.app"
+                  href="https://wiki.degrocraft.ru"
                   target="_blank"
                   className="text-blue-500  "
                 >

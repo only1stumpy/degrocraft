@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://degrocraft.vercel.app"),
+  metadataBase: new URL("https://degrocraft.ru"),
   title: {
     default: "DEGROCRAFT — Приватный Minecraft сервер | Ванильное выживание",
     template: "%s | DEGROCRAFT",
@@ -33,6 +33,10 @@ export const metadata: Metadata = {
     "survival minecraft",
     "minecraft россия",
   ],
+  icons: {
+    icon: '/favicon.ico', // положи файл в папку public
+    apple: '/apple-touch-icon.png',
+  },
   robots: {
     index: true,
     follow: true,
@@ -53,7 +57,7 @@ export const metadata: Metadata = {
     telephone: false,
   },
   alternates: {
-    canonical: "https://degrocraft.vercel.app",
+    canonical: "https://degrocraft.ru",
   },
   openGraph: {
     title: "DEGROCRAFT — Приватный Minecraft сервер",
@@ -62,7 +66,7 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "DEGROCRAFT",
     locale: "ru_RU",
-    url: "https://degrocraft.vercel.app",
+    url: "https://degrocraft.ru",
     images: [
       {
         url: "/og-image.png",
@@ -81,7 +85,7 @@ export const metadata: Metadata = {
   verification: {
     // Добавь свои ключи верификации после регистрации в консолях
     // google: "ваш-google-site-verification-код",
-    // yandex: "ваш-yandex-verification-код",
+    yandex: "9355eade0b127eec",
   },
   category: "games",
 };
@@ -92,10 +96,10 @@ const jsonLd = {
   "@type": "WebSite",
   name: "DEGROCRAFT",
   description: "Приватный Minecraft сервер для друзей",
-  url: "https://degrocraft.vercel.app",
+  url: "https://degrocraft.ru",
   potentialAction: {
     "@type": "SearchAction",
-    target: "https://degrocraft.vercel.app/?q={search_term_string}",
+    target: "https://degrocraft.ru/?q={search_term_string}",
     "query-input": "required name=search_term_string",
   },
 };
@@ -106,7 +110,7 @@ const gameServerJsonLd = {
   name: "DEGROCRAFT Minecraft Server",
   description:
     "Уютный приватный Minecraft сервер для друзей. Ванильный геймплей, версия 1.21.11",
-  url: "https://degrocraft.vercel.app",
+  url: "https://degrocraft.ru",
   game: {
     "@type": "VideoGame",
     name: "Minecraft",
@@ -132,7 +136,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(gameServerJsonLd) }}
         />
-        <meta name="yandex-verification" content="9355eade0b127eec" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

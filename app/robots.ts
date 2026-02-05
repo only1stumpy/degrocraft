@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://degrocraft.vercel.app/sitemap.xml",
+    sitemap: "https://degrocraft.ru/sitemap.xml",
   };
 }

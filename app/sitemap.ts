@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://degrocraft.vercel.app";
+  const baseUrl = "https://degrocraft.ru";
 
   return [
     {
@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/rules`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-01-30'),
       changeFrequency: "monthly",
       priority: 0.8,
     },
